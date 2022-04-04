@@ -15,12 +15,8 @@
   "author": "Jinyong Lee <dhzl3332@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/pluralize": "^0.0.29",
     "chai": "^4.3.6",
     "mocha": "^9.2.2",
     "typescript": "^4.6.3"
-  },
-  "dependencies": {
-    "pluralize": "^8.0.0"
   }
 }
