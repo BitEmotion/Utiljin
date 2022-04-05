@@ -21,12 +21,12 @@ npm install -g utiljin
 <br>
 
 # 3. Function list
-0. Import
+### 0. Import
 ```
 const Utiljin = require("utiljin");
 ```
 
-1. makeDummyNumberArray
+### 1. makeDummyNumberArray
 ```
 /**  Array elements are created as many as the number entered as parameters (from 0 to 1, 2, 3...)
 * @param  {number}  length
@@ -41,7 +41,7 @@ Utiljin.makeDummyNumberArray(15);
 
 <br>
 
-2. makeDummyNumberArray_fromNumber
+### 2. makeDummyNumberArray_fromNumber
 ```
 /** Array elements are created as many as the number entered as the first parameter.
 * Set the starting number in the second parameter
@@ -59,7 +59,7 @@ Utiljin.makeDummyNumberArray_fromNumber(3, 12)
 
 <br>
 
-3. getRandomNumber
+### 3. getRandomNumber
 ```
 /**   
 Get a random number within the range of numbers entered as a parameter.
@@ -72,7 +72,7 @@ Utiljin.getRandomNumber(100)
 
 <br>
 
-4. getCommaNumber
+### 4. getCommaNumber
 ```
 /**   
 Insert a , (comma) for every 3 digits
@@ -85,7 +85,7 @@ Utiljin.getCommaNumber(1000000000)
 
 <br>
 
-5. getFixedNumber
+### 5. getFixedNumber
 ```
 /** change the number of decimal places
 * @param  {number}  num   변경할 숫자
@@ -98,7 +98,7 @@ Utiljin.getFixedNumber(10,2);
 
 <br>
 
-6. isFindString
+### 6. isFindString
 ```
 /** Returns true if foundStr is in str, false otherwise
 * 
@@ -114,7 +114,7 @@ Utiljin.isFindString("jinyong","jacky");
 
 <br>
 
-7. renderPrice
+### 7. renderPrice
 ```
 /** Change the number to Korean Won
 *
@@ -130,7 +130,7 @@ Utiljin.renderPrice(470000000);
 <br>
 
 
-8. createDummyData
+### 8. createDummyData
 ```
 /** Function to use to populate temporary data
 
@@ -148,7 +148,7 @@ Utiljin.createDummyData(10,5,0);
 <br>
 
 
-9. createDummyData_noRandom
+### 9. createDummyData_noRandom
 ```
 /**   Function to use to populate temporary data (without random values)
 
@@ -164,7 +164,7 @@ Utiljin.createDummyData_noRandom(10,10);
 
 <br>
 
-10. bubbleSort
+### 10. bubbleSort
 ```
 /**   bubbleSort
 
@@ -179,7 +179,7 @@ Utiljin.bubbleSort([5,2,4,1,3]);
 
 <br>
 
-11. selectionSort
+### 11. selectionSort
 ```
 /**   selectionSort
 
@@ -194,7 +194,7 @@ Utiljin.selectionSort([5,2,4,1,3]);
 
 <br>
 
-12. averagePair
+### 12. averagePair
 ```
 /**  true if the average of the two selected numbers in the array matches the second argument (expression 2 below) false if not matched (expression 1 below)
 
@@ -210,7 +210,7 @@ Utiljin.averagePair([1,2,3,4,5],2);
 
 <br>
 
-13. getDatetime
+### 13. getDatetime
 ```
 /** Get Now Time
 
@@ -222,7 +222,7 @@ Utiljin.getDatetime();
 
 <br>
 
-14. getDateTimePrevMonth_fromBaseTime
+### 14. getDateTimePrevMonth_fromBaseTime
 ```
 /** Function to get the date of the previous month from the base date
 
@@ -239,7 +239,7 @@ Utiljin.getDateTimePrevMonth_fromBaseTime(10, "2022-01");
 
 <br>
 
-15. toHex
+### 15. toHex
 ```
 /** convert number to hexadecimal
 
@@ -256,7 +256,7 @@ Utiljin.toHex(1000);
 
 <br>
 
-16. deleteCharFromString
+### 16. deleteCharFromString
 ```
 /** If the character that is the second argument exists in the first argument string, it is removed.
 
@@ -271,7 +271,7 @@ Utiljin.deleteCharFromString("leejinyong","e")
 <br>
 
 
-17. factorial
+### 17. factorial
 ```
 /** factorial.
 
@@ -288,7 +288,7 @@ Utiljin.factorial(10);
 <br>
 
 
-18. fibonaci
+### 18. fibonaci
 ```
 /** fibonaci.
 
@@ -303,7 +303,7 @@ Utiljin.factorial(100);
 
 <br>
 
-19. gcd
+### 19. gcd
 ```
 /**  get Greatest Common Divisor
 
@@ -319,7 +319,7 @@ Utiljin.gcd(20,10);
 
 <br>
 
-20. lcm
+### 20. lcm
 ```
 /**  get Least Common Multiple.
 
