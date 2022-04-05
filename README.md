@@ -1,12 +1,24 @@
 # 1. Utiljin
-Utiljin is a utility function created by Jinyong-Lee
+Utiljin is a utility function created by Jinyong-Lee  
+
+<br>
 
 # 2. Installation
-you can install local or globally
-## install utiljin local
-npm install utiljin
-## install utiljin globally
-npm install -g typescript
+you can install local or globally  
+
+<br>
+
+#### install utiljin local    
+```
+npm install utiljin 
+```
+
+#### install utiljin globally  
+```
+npm install -g utiljin
+```
+
+<br>
 
 # 3. Function list
 0. Import
@@ -27,6 +39,8 @@ Utiljin.makeDummyNumberArray(15);
 => [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 ```
 
+<br>
+
 2. makeDummyNumberArray_fromNumber
 ```
 /** Array elements are created as many as the number entered as the first parameter.
@@ -43,6 +57,8 @@ Utiljin.makeDummyNumberArray_fromNumber(3, 12)
 => [12, 13, 14]
 ```
 
+<br>
+
 3. getRandomNumber
 ```
 /**   
@@ -53,6 +69,8 @@ Get a random number within the range of numbers entered as a parameter.
 Utiljin.getRandomNumber(100)
 => 57 (random number from 0 to 100)
 ```
+
+<br>
 
 4. getCommaNumber
 ```
@@ -65,6 +83,8 @@ Utiljin.getCommaNumber(1000000000)
 => "1,000,000,000"
 ```
 
+<br>
+
 5. getFixedNumber
 ```
 /** change the number of decimal places
@@ -75,6 +95,8 @@ Utiljin.getCommaNumber(1000000000)
 Utiljin.getFixedNumber(10,2);
 => "10.00"
 ```
+
+<br>
 
 6. isFindString
 ```
@@ -90,6 +112,8 @@ Utiljin.isFindString("jinyong","jacky");
 => false
 ```
 
+<br>
+
 7. renderPrice
 ```
 /** Change the number to Korean Won
@@ -102,6 +126,8 @@ Utiljin.renderPrice("107,000,000");
 Utiljin.renderPrice(470000000);
 => 4억 7천만
 ```
+
+<br>
 
 
 8. createDummyData
@@ -119,6 +145,7 @@ Utiljin.createDummyData(10,5,0);
 => [4, 4, 1, 3, 2, 5, 5, 3, 2, 3]
 ```
 
+<br>
 
 
 9. createDummyData_noRandom
@@ -135,6 +162,7 @@ Utiljin.createDummyData_noRandom(10,10);
 => [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 ```
 
+<br>
 
 10. bubbleSort
 ```
@@ -149,7 +177,7 @@ Utiljin.bubbleSort([5,2,4,1,3]);
 => [1, 2, 3, 4, 5]
 ```
 
-
+<br>
 
 11. selectionSort
 ```
@@ -164,6 +192,7 @@ Utiljin.selectionSort([5,2,4,1,3]);
 => [1, 2, 3, 4, 5]
 ```
 
+<br>
 
 12. averagePair
 ```
@@ -179,7 +208,7 @@ Utiljin.averagePair([1,2,3,4,5],2);
 => true
 ```
 
-
+<br>
 
 13. getDatetime
 ```
@@ -191,6 +220,7 @@ Utiljin.getDatetime();
 => '22-04-05  15 : 05 : 25' (now time)
 ```
 
+<br>
 
 14. getDateTimePrevMonth_fromBaseTime
 ```
@@ -207,7 +237,7 @@ Utiljin.getDateTimePrevMonth_fromBaseTime(10, "2022-01");
 ```
 
 
-
+<br>
 
 15. toHex
 ```
@@ -224,7 +254,7 @@ Utiljin.toHex(1000);
 ```
 
 
-
+<br>
 
 16. deleteCharFromString
 ```
@@ -238,6 +268,7 @@ Utiljin.deleteCharFromString("leejinyong","e")
 => 'ljinyong'
 ```
 
+<br>
 
 
 17. factorial
@@ -254,6 +285,7 @@ Utiljin.factorial(10);
 ```
 
 
+<br>
 
 
 18. fibonaci
@@ -269,6 +301,8 @@ Utiljin.factorial(100);
 => 354224848179262000000
 ```
 
+<br>
+
 19. gcd
 ```
 /**  get Greatest Common Divisor
@@ -283,7 +317,7 @@ Utiljin.gcd(20,10);
 => 10
 ```
 
-
+<br>
 
 20. lcm
 ```
@@ -300,7 +334,13 @@ Utiljin.lcm([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 => 360360
 ```
 
+<br>
+
 # 4. Bug Report
 
-> If you fine some ploblem, contact me dhzl3332@gmail.com 
+> If you find some problem, contact me dhzl3332@gmail.com 
 
+
+## keyword
+
+<span  style="color: red">Util</span>  <span  style="color: red">Typescript</span> <span  style="color: red">Javascript</span>
