@@ -1,6 +1,6 @@
 {
   "name": "utiljin",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,6 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/BitEmotion/Utiljin.git"
   },
+  "keywords": [
+    "Util",
+    "Typescript",
+    "Javascript",
+    "JinyongLee"
+  ],
   "author": "Jinyong Lee <dhzl3332@gmail.com>",
   "license": "ISC",
   "devDependencies": {

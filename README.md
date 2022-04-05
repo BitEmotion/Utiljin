@@ -339,8 +339,3 @@ Utiljin.lcm([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 # 4. Bug Report
 
 > If you find some problem, contact me dhzl3332@gmail.com 
-
-
-## keyword
-
-<span  style="color: red">Util</span>  <span  style="color: red">Typescript</span> <span  style="color: red">Javascript</span>
