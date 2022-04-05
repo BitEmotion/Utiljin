@@ -19,23 +19,7 @@ const makeDummyNumberArray_fromNumber = (length: number, fromNumber: number): Ar
   return Array.from({length}, (_, v) => v + fromNumber);
 }
 
-const nullToZero = (param_nullAble:null | string): string => {
-  if( !param_nullAble ) {
-      return "0";
-  } else {
-      return parseFloat(param_nullAble).toFixed(4);
-  }
-}
-
-const nullToOne = (param_nullAble:null | string): string=> {
-  if( !param_nullAble ) {
-      return "1";
-  } else {
-      return parseFloat(param_nullAble).toFixed(4);
-  }
-}
-
-/**
+/** 파라미터로 넣은 숫자 범위 안에서 랜덤한 숫자를 가져온다
  * @param {number} num 
  * @return {number}
  */
@@ -43,7 +27,7 @@ const nullToOne = (param_nullAble:null | string): string=> {
   return Math.floor(Math.random() * num);
 }
 
-/**
+/** 3자리숫자마다 ,(콤마)를 넣는다
  * @param {number} num 
  * @return {string}
  */
@@ -63,7 +47,8 @@ const nullToOne = (param_nullAble:null | string): string=> {
   return num.toFixed(fixed);
 }
 
-/** str 안에 findedStr가 있으면 true
+/**  isFindString
+ *  str 안에 findedStr가 있으면 true
  *                       없으면 false
  * @param {string} str 
  * @param {string} findedStr 
@@ -77,54 +62,85 @@ const nullToOne = (param_nullAble:null | string): string=> {
   }
 }
 
+/** renderPrice 
+ *
+ * @param {string | number} param_price    107,000,000
+ * @return {string}                       => 1억 700만
+ */
 const renderPrice = (param_price: string | number): string => {
   
-  const setWon = (pWon: string): string => {
-      var won  = (pWon+"").replace(/,/g, "");
-      var arrWon  = ["원", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정"];
-      var changeWon = "";
-      var pattern = /(-?[0-9]+)([0-9]{4})/;
-      while (pattern.test(won)) {                  
-          won = won.replace(pattern,"$1,$2");
-      }
-      var arrCnt = won.split(",").length-1;
-      for ( var ii = 0; ii < won.split(",").length; ii++) {
-          if ( arrWon[arrCnt] == undefined ) {
-              // alert("값의 수가 너무 큽니다.");
-              break;
-          }
-          var tmpwon=0;
-          for ( let i = 0; i< won.split(",")[ii].length; i++ ){
-              var num1 = won.split(",")[ii].substring(i,i+1);
-              tmpwon = tmpwon+Number(num1);
-          }
-          if ( tmpwon > 0 ){
-              changeWon += won.split(",")[ii]+arrWon[arrCnt]; //55억0000만0000원 이런 형태 방지 0000 다 짤라 버린다
-          }
-          arrCnt--;
-      }
-      return changeWon;
-  }
+    const setWon = (pWon: string): string => {
+        var won  = (pWon+"").replace(/,/g, "");
+        var arrWon  = ["원", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정"];
+        var changeWon = "";
+        var pattern = /(-?[0-9]+)([0-9]{4})/;
+        while (pattern.test(won)) {                  
+            won = won.replace(pattern,"$1,$2");
+        }
+        var arrCnt = won.split(",").length-1;
+        for ( var ii = 0; ii < won.split(",").length; ii++) {
+            if ( arrWon[arrCnt] == undefined ) {
+                // alert("값의 수가 너무 큽니다.");
+                break;
+            }
+            var tmpwon=0;
+            for ( let i = 0; i< won.split(",")[ii].length; i++ ){
+                var num1 = won.split(",")[ii].substring(i,i+1);
+                tmpwon = tmpwon+Number(num1);
+            }
+            if ( tmpwon > 0 ){
+                changeWon += won.split(",")[ii]+arrWon[arrCnt]; //55억0000만0000원 이런 형태 방지 0000 다 짤라 버린다
+            }
+            arrCnt--;
+        }
+        return changeWon;
+    }
 
-  if (typeof param_price == "string" && param_price.indexOf("-") == 0) {
-      // console.log("param_price",param_price);
-      const param_price_한글 = setWon(param_price.replace("-","") + "0000");
-      return "( " + "-" + param_price_한글.replace("억0","억").replace("억","억 ") + ")";
-  } else {
-      const param_price_한글 = setWon(param_price + "0000");
-      return param_price_한글.replace("억0","억").replace("억","억 ");
-  }
+    if (typeof param_price == "string" && param_price.indexOf("-") == 0) {
+        // console.log("param_price",param_price);
+        const param_price_한글 = setWon(param_price.replace("-","") + "0000");
+        return "( " + "-" + param_price_한글.replace("억0","억").replace("억","억 ") + ")";
+    } else {
+        const param_price_한글 = setWon(param_price + "0000");
+        return param_price_한글.replace("억0","억").replace("억","억 ");
+    }
+
+}
+
+/** 임시 데이터를 채우기 위해 사용할 함수 */
+/** createDummyData 
+ * @param {number} lengthNumber   
+ * @param {number} rangeNumber   
+ * @param {number} decimalPoint  
+ * @return {Array<number>}       
+ */
+const createDummyData = (lengthNumber: number, rangeNumber: number, decimalPoint: number): Array<number> => {
+    const newArr = Array.from({length: lengthNumber}, (_,v) => v + 1);
+    const newArr_mapped = newArr.map(val => {
+        return parseInt((Math.random() * rangeNumber).toFixed(decimalPoint));
+    });  
+    return newArr_mapped;
+}
+
+/** 임시 데이터를 채우기 위해 사용할 함수 */
+/** createDummyData 
+ * @param {Array<number>} arr   
+ * @param {number} num   
+ * @return {string}       
+ */
+const createDummyData_noRandom = (lengthNumber: number, startNumber: number): Array<number> => {
+    const newArr = Array.from({length: lengthNumber}, (_,v) => startNumber - v);
+    return newArr;
 }
 
 
-const averagePair = (arr: Array<number>, num: number) => {
-	// if (!Array.isArray(arr)) {
-  //   throw '첫번째 인자는 배열이어야 합니다.'
-  // }
-	// if (typeof(num) != 'number') {
-  //   throw '두번째 인자는 숫자이어야 합니다.'
-  // }
 
+/** averagePair 
+ * @param {Array<number>} arr   
+ * @param {number} num   
+ * @return {string}       
+ */
+const averagePair = (arr: Array<number>, num: number) => {
 	let left = 0;
 	let right = 1;
 	let result = [];
@@ -499,11 +515,61 @@ const transposeMatrix = (arr:Array<Array<number>>) => {
   return retArr;
 }
 
+/**
+ * 확장자 이름 변경
+ * @param {string} name 
+ * @param {string} extName 
+ * @return {string}
+ */ 
+const changeExtName = (name: string, extName: string): string => {
+    const ret_extName = name.slice(0, name.indexOf(".") + 1) + extName;
+    return ret_extName;
+}
+
+/** 버블 정렬
+ * @param {Array<number>} array   
+ * @return {Array<number>}    
+ */
+const bubbleSort = (array: Array<number>): Array<number> => {
+    for (let i = 0; i < array.length - 1; ++i) {
+        for (let j = 0; j < array.length - i - 1; ++j) {
+            let temp;
+            if (array[j] > array[j+1]) {
+                temp = array[j+1];
+                array[j+1] = array[j];
+                array[j] = temp;
+            } 
+        }
+    }
+    return array;
+}
+
+/** 선택 정렬
+ * @param {Array<number>} array   
+ * @return {Array<number>}    
+ */
+const selectionSort = (array: Array<number>): Array<number> => {
+    for (let i = 0; i < array.length - 1; ++i) {
+        let MIN_NUM = 999999999;
+        let findedIndex = 0;
+        let temp;
+        for (let j = i; j < array.length; ++j) {
+            if (array[j] < MIN_NUM) {
+                MIN_NUM = array[j];
+                findedIndex = j;
+            } 
+        }
+    
+        temp = array[i];
+        array[i] = MIN_NUM;
+        array[findedIndex] = temp;
+    }
+    return array;
+}
+
 export {
   makeDummyNumberArray
   , makeDummyNumberArray_fromNumber
-  , nullToZero
-  , nullToOne
 
   , getRandomNumber
   , getCommaNumber
@@ -533,4 +599,12 @@ export {
   , repeatString
   , simpleArraySum
   , transposeMatrix
+
+  , changeExtName
+
+  , createDummyData
+  , createDummyData_noRandom
+
+  , bubbleSort
+  , selectionSort
 }
