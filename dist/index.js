@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.transposeMatrix = exports.simpleArraySum = exports.repeatString = exports.permute = exports.makePermanum = exports.linearSearch = exports.lcm = exports.infixToPostfix = exports.getAllSubsets = exports.hanoi_noRecursive = exports.hanoi = exports.gcd = exports.fibonaci_norecursive = exports.fibonaci = exports.factorial = exports.deleteCharFromString = exports.diagonalDifference = exports.toHex = exports.compareTriplets = exports.averagePair = exports.renderPrice = exports.isFindString = exports.getFixedNumber = exports.getCommaNumber = exports.getRandomNumber = exports.nullToOne = exports.nullToZero = exports.makeDummyNumberArray_fromNumber = exports.makeDummyNumberArray = void 0;
+exports.getDateTimePrevMonth_fromBaseTime = exports.getDatetime = exports.selectionSort = exports.bubbleSort = exports.createDummyData_noRandom = exports.createDummyData = exports.changeExtName = exports.transposeMatrix = exports.simpleArraySum = exports.repeatString = exports.permute = exports.makePermanum = exports.linearSearch = exports.lcm = exports.infixToPostfix = exports.getAllSubsets = exports.hanoi_noRecursive = exports.hanoi = exports.gcd = exports.fibonaci = exports.factorial = exports.deleteCharFromString = exports.diagonalDifference = exports.toHex = exports.compareTriplets = exports.averagePair = exports.renderPrice = exports.isFindString = exports.getFixedNumber = exports.getCommaNumber = exports.getRandomNumber = exports.makeDummyNumberArray_fromNumber = exports.makeDummyNumberArray = void 0;
 /** 파라미터로 들어간 숫자 만큼 배열의 요소가 생김(0부터 1, 2,3... 식으로)
  * @param {number} length
  * @return {Array<number>}
@@ -21,25 +21,7 @@ const makeDummyNumberArray_fromNumber = (length, fromNumber) => {
     return Array.from({ length }, (_, v) => v + fromNumber);
 };
 exports.makeDummyNumberArray_fromNumber = makeDummyNumberArray_fromNumber;
-const nullToZero = (param_nullAble) => {
-    if (!param_nullAble) {
-        return "0";
-    }
-    else {
-        return parseFloat(param_nullAble).toFixed(4);
-    }
-};
-exports.nullToZero = nullToZero;
-const nullToOne = (param_nullAble) => {
-    if (!param_nullAble) {
-        return "1";
-    }
-    else {
-        return parseFloat(param_nullAble).toFixed(4);
-    }
-};
-exports.nullToOne = nullToOne;
-/**
+/** 파라미터로 넣은 숫자 범위 안에서 랜덤한 숫자를 가져온다
  * @param {number} num
  * @return {number}
  */
@@ -47,7 +29,7 @@ const getRandomNumber = (num) => {
     return Math.floor(Math.random() * num);
 };
 exports.getRandomNumber = getRandomNumber;
-/**
+/** 3자리숫자마다 ,(콤마)를 넣는다
  * @param {number} num
  * @return {string}
  */
@@ -67,7 +49,8 @@ const getFixedNumber = (num, fixed) => {
     return num.toFixed(fixed);
 };
 exports.getFixedNumber = getFixedNumber;
-/** str 안에 findedStr가 있으면 true
+/**  isFindString
+ *  str 안에 findedStr가 있으면 true
  *                       없으면 false
  * @param {string} str
  * @param {string} findedStr
@@ -82,6 +65,11 @@ const isFindString = (str, findedStr) => {
     }
 };
 exports.isFindString = isFindString;
+/** renderPrice
+ *
+ * @param {string | number} param_price    107,000,000
+ * @return {string}                       => 1억 700만
+ */
 const renderPrice = (param_price) => {
     const setWon = (pWon) => {
         var won = (pWon + "").replace(/,/g, "");
@@ -120,13 +108,95 @@ const renderPrice = (param_price) => {
     }
 };
 exports.renderPrice = renderPrice;
+/** 임시 데이터를 채우기 위해 사용할 함수 */
+/** createDummyData
+ * @param {number} lengthNumber
+ * @param {number} rangeNumber
+ * @param {number} decimalPoint
+ * @return {Array<number>}
+ */
+const createDummyData = (lengthNumber, rangeNumber, decimalPoint) => {
+    const newArr = Array.from({ length: lengthNumber }, (_, v) => v + 1);
+    const newArr_mapped = newArr.map(val => {
+        return parseFloat((Math.random() * rangeNumber).toFixed(decimalPoint));
+    });
+    return newArr_mapped;
+};
+exports.createDummyData = createDummyData;
+/** 임시 데이터를 채우기 위해 사용할 함수 */
+/** createDummyData
+ * @param {Array<number>} arr
+ * @param {number} num
+ * @return {string}
+ */
+const createDummyData_noRandom = (lengthNumber, startNumber) => {
+    const newArr = Array.from({ length: lengthNumber }, (_, v) => startNumber - v);
+    return newArr;
+};
+exports.createDummyData_noRandom = createDummyData_noRandom;
+const getDatetime = (param_date) => {
+    let date;
+    if (param_date) {
+        date = new Date(param_date);
+    }
+    else {
+        date = new Date();
+    }
+    // date Object를 받아오고
+    let year = date.getFullYear();
+    // 연도를 받아오고
+    let month = date.getMonth();
+    // 달을 받아옴
+    let clockDate = date.getDate();
+    // 요일은 숫자형태로 리턴되기때문에 미리 배열을 만듬.
+    let hours = date.getHours();
+    // 시간을 받아오고
+    let minutes = date.getMinutes();
+    // 분도 받아오고.
+    let seconds = date.getSeconds();
+    // 초 받아옴
+    return `${year.toString().substring(2, 4)}-${month + 1 < 10
+        ? `0${month + 1}`
+        : month + 1}-${clockDate < 10
+        ? `0${clockDate} `
+        : clockDate} ` +
+        `${hours < 10
+            ? `0${hours}`
+            : hours} : ${minutes < 10
+            ? `0${minutes}`
+            : minutes} : ${seconds < 10
+            ? `0${seconds}`
+            : seconds}`;
+};
+exports.getDatetime = getDatetime;
+/**
+ *
+ * @param {number} param_month
+ * @param {string} baseDate
+ * @returns {string}
+ */
+const getDateTimePrevMonth_fromBaseTime = (param_month, baseDate) => {
+    let date;
+    if (baseDate) {
+        date = new Date(baseDate);
+    }
+    else {
+        date = new Date();
+    }
+    let clockDate = new Date(date.getFullYear(), date.getMonth() - param_month, date.getDate());
+    let year = clockDate.getFullYear();
+    let month = clockDate.getMonth();
+    return `${year.toString()}-${month + 1 < 10
+        ? `0${month + 1}`
+        : month + 1}`;
+};
+exports.getDateTimePrevMonth_fromBaseTime = getDateTimePrevMonth_fromBaseTime;
+/** averagePair
+ * @param {Array<number>} arr
+ * @param {number} num
+ * @return {boolean}
+ */
 const averagePair = (arr, num) => {
-    // if (!Array.isArray(arr)) {
-    //   throw '첫번째 인자는 배열이어야 합니다.'
-    // }
-    // if (typeof(num) != 'number') {
-    //   throw '두번째 인자는 숫자이어야 합니다.'
-    // }
     let left = 0;
     let right = 1;
     let result = [];
@@ -170,12 +240,23 @@ const compareTriplets = (aArr, bArr) => {
     return [aWard, bWard];
 };
 exports.compareTriplets = compareTriplets;
+/** 숫자를 16진수로 변경
+ *
+ * @param {number} n
+ * @returns {string}
+ */
 const toHex = (n) => {
     if (n < 16)
         return '0' + n.toString(16);
     return n.toString(16);
 };
 exports.toHex = toHex;
+/**
+ *
+ * @param {string} param_string
+ * @param {string} param_char
+ * @returns {string}
+ */
 const deleteCharFromString = (param_string, param_char) => {
     let ret_string = param_string;
     if (ret_string.indexOf(param_char) != -1) {
@@ -202,29 +283,37 @@ const diagonalDifference = (arr) => {
     return Math.abs(a - b);
 };
 exports.diagonalDifference = diagonalDifference;
-const factorial = (n) => {
-    if (n == 1) {
+/**
+
+ * @param {number} num
+ * @returns {number}
+ */
+const factorial = (num) => {
+    if (num == 1) {
         return 1;
     }
-    let prev = n;
-    while (n > 1) {
-        prev = prev * (n - 1);
-        n--;
+    let prev = num;
+    while (num > 1) {
+        prev = prev * (num - 1);
+        num--;
     }
     return prev;
 };
 exports.factorial = factorial;
-const fibonaci = (x) => {
-    if (x < 3)
-        return 1;
-    return fibonaci(x - 1) + fibonaci(x - 2);
-};
-exports.fibonaci = fibonaci;
+// const fibonaci = (x: number): number => {
+//   if(x < 3) return 1;
+//   return fibonaci(x-1) + fibonaci(x-2);
+// };
 // 스택을 활용한 반복
-const fibonaci_norecursive = (x) => {
+/** fibonaci
+ *
+ * @param {number} num
+ * @returns {number}
+ */
+const fibonaci = (num) => {
     const stack = [];
     let i = 0;
-    let lastIndex = x - 1;
+    let lastIndex = num - 1;
     while (i <= lastIndex) {
         if (i < 2) {
             stack.push(1);
@@ -236,7 +325,13 @@ const fibonaci_norecursive = (x) => {
     }
     return stack.pop() || 0;
 };
-exports.fibonaci_norecursive = fibonaci_norecursive;
+exports.fibonaci = fibonaci;
+/**
+ *
+ * @param minNum
+ * @param maxNum
+ * @returns
+ */
 const gcd = (minNum, maxNum) => {
     let ret_answer = 0;
     let prev = {
@@ -364,6 +459,11 @@ const infixToPostfix = (param_str) => {
 };
 exports.infixToPostfix = infixToPostfix;
 // 반복문을 활용한 최소공배수 구하기 no recursive
+/**
+ *
+ * @param {Array<number>} arr
+ * @returns {number}
+ */
 const lcm = (arr) => {
     //calculate array`s index minMax
     let minNum = 100;
@@ -504,3 +604,54 @@ const transposeMatrix = (arr) => {
     return retArr;
 };
 exports.transposeMatrix = transposeMatrix;
+/**
+ * 확장자 이름 변경
+ * @param {string} name
+ * @param {string} extName
+ * @return {string}
+ */
+const changeExtName = (name, extName) => {
+    const ret_extName = name.slice(0, name.indexOf(".") + 1) + extName;
+    return ret_extName;
+};
+exports.changeExtName = changeExtName;
+/** 버블 정렬
+ * @param {Array<number>} array
+ * @return {Array<number>}
+ */
+const bubbleSort = (array) => {
+    for (let i = 0; i < array.length - 1; ++i) {
+        for (let j = 0; j < array.length - i - 1; ++j) {
+            let temp;
+            if (array[j] > array[j + 1]) {
+                temp = array[j + 1];
+                array[j + 1] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+    return array;
+};
+exports.bubbleSort = bubbleSort;
+/** 선택 정렬
+ * @param {Array<number>} array
+ * @return {Array<number>}
+ */
+const selectionSort = (array) => {
+    for (let i = 0; i < array.length - 1; ++i) {
+        let MIN_NUM = 999999999;
+        let findedIndex = 0;
+        let temp;
+        for (let j = i; j < array.length; ++j) {
+            if (array[j] < MIN_NUM) {
+                MIN_NUM = array[j];
+                findedIndex = j;
+            }
+        }
+        temp = array[i];
+        array[i] = MIN_NUM;
+        array[findedIndex] = temp;
+    }
+    return array;
+};
+exports.selectionSort = selectionSort;

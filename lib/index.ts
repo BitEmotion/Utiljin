@@ -117,7 +117,7 @@ const renderPrice = (param_price: string | number): string => {
 const createDummyData = (lengthNumber: number, rangeNumber: number, decimalPoint: number): Array<number> => {
     const newArr = Array.from({length: lengthNumber}, (_,v) => v + 1);
     const newArr_mapped = newArr.map(val => {
-        return parseInt((Math.random() * rangeNumber).toFixed(decimalPoint));
+        return parseFloat((Math.random() * rangeNumber).toFixed(decimalPoint));
     });  
     return newArr_mapped;
 }
@@ -133,14 +133,69 @@ const createDummyData_noRandom = (lengthNumber: number, startNumber: number): Ar
     return newArr;
 }
 
+const getDatetime = (param_date?: string) => {
 
+    let date;
+    if (param_date) {
+        date = new Date(param_date);
+    } else {
+        date = new Date();
+    }
+    // date Object를 받아오고
+    let year = date.getFullYear();
+    // 연도를 받아오고
+    let month = date.getMonth();
+   // 달을 받아옴
+    let clockDate = date.getDate();
+    // 요일은 숫자형태로 리턴되기때문에 미리 배열을 만듬.
+    let hours = date.getHours();
+    // 시간을 받아오고
+    let minutes = date.getMinutes();
+    // 분도 받아오고.
+    let seconds = date.getSeconds();
+    // 초 받아옴
+    return `${year.toString().substring(2,4)}-${month+1 < 10
+                        ? `0${month+1}`
+                        : month+1}-${clockDate < 10
+                                        ? `0${clockDate} `
+                                        : clockDate} ` +
+    `${hours < 10 
+                ? `0${hours}` 
+                : hours} : ${minutes < 10 
+                                    ? `0${minutes}`  
+                                    : minutes } : ${seconds < 10 
+                                        ? `0${seconds }`  
+                                        : seconds }`;
+}
+
+/**
+ * 
+ * @param {number} param_month 
+ * @param {string} baseDate 
+ * @returns {string} 
+ */
+const getDateTimePrevMonth_fromBaseTime = (param_month: number, baseDate?: string): string => {
+    let date ;
+    if (baseDate) {
+        date = new Date(baseDate);
+    } else {
+        date = new Date();
+    }
+
+    let clockDate = new Date(date.getFullYear(), date.getMonth() - param_month, date.getDate());
+    let year = clockDate.getFullYear();
+    let month = clockDate.getMonth();
+    return `${year.toString()}-${month+1 < 10
+            ? `0${month+1}`
+            : month+1}`;
+}
 
 /** averagePair 
  * @param {Array<number>} arr   
  * @param {number} num   
- * @return {string}       
+ * @return {boolean}       
  */
-const averagePair = (arr: Array<number>, num: number) => {
+const averagePair = (arr: Array<number>, num: number):boolean => {
 	let left = 0;
 	let right = 1;
 	let result = [];
@@ -180,11 +235,22 @@ const compareTriplets = (aArr: Array<number>, bArr: Array<number>): Array<number
   return [aWard, bWard];
 }
 
+/** 숫자를 16진수로 변경
+ * 
+ * @param {number} n 
+ * @returns {string}
+ */
 const toHex = (n: number): string => {
   if (n < 16) return '0' + n.toString(16)
   return n.toString(16)
 }
 
+/**
+ * 
+ * @param {string} param_string 
+ * @param {string} param_char 
+ * @returns {string}
+ */
 const deleteCharFromString = (param_string: string, param_char: string): string => {
   let ret_string = param_string;
   if(ret_string.indexOf(param_char) != -1){
@@ -211,29 +277,39 @@ const diagonalDifference = (arr: Array<any>): number => {
   return Math.abs(a-b);
 }
 
-const factorial = (n: number): number => {
-  if(n == 1){
+/**
+
+ * @param {number} num 
+ * @returns {number}
+ */
+const factorial = (num: number): number => {
+  if(num == 1){
       return 1;
   }
   
-  let prev = n;
-  while(n > 1){
-      prev = prev * (n-1);
-      n--;
+  let prev = num;
+  while(num > 1){
+      prev = prev * (num-1);
+      num--;
   }
   return prev;
 }
 
-const fibonaci = (x: number): number => {
-  if(x < 3) return 1;
-  return fibonaci(x-1) + fibonaci(x-2);
-};
-
+// const fibonaci = (x: number): number => {
+//   if(x < 3) return 1;
+//   return fibonaci(x-1) + fibonaci(x-2);
+// };
 // 스택을 활용한 반복
-const fibonaci_norecursive = (x: number): number => {
+
+/** fibonaci
+ * 
+ * @param {number} num
+ * @returns {number}
+ */
+const fibonaci = (num: number): number => {
     const stack: Array<number> = [];
     let i = 0;
-    let lastIndex = x - 1;
+    let lastIndex = num - 1;
     while(i <= lastIndex){
         if(i < 2) {
             stack.push(1);
@@ -244,6 +320,13 @@ const fibonaci_norecursive = (x: number): number => {
     }
     return stack.pop() || 0;
 }
+
+/**
+ * 
+ * @param minNum 
+ * @param maxNum 
+ * @returns 
+ */
 
 const gcd = (minNum: number, maxNum: number) => {
   let ret_answer = 0;
@@ -368,7 +451,12 @@ const infixToPostfix = (param_str: string) => {
 }
 
 // 반복문을 활용한 최소공배수 구하기 no recursive
-const lcm = (arr:Array<number>) => {
+/**
+ * 
+ * @param {Array<number>} arr 
+ * @returns {number}
+ */
+const lcm = (arr:Array<number>): number => {
   //calculate array`s index minMax
   let minNum = 100;
   let maxNum = 0;
@@ -586,7 +674,7 @@ export {
   , factorial
 
   , fibonaci
-  , fibonaci_norecursive
+//   , fibonaci_norecursive
   , gcd
   , hanoi
   , hanoi_noRecursive
@@ -607,4 +695,7 @@ export {
 
   , bubbleSort
   , selectionSort
+
+  , getDatetime
+  , getDateTimePrevMonth_fromBaseTime
 }

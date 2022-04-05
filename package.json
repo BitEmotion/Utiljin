@@ -1,6 +1,6 @@
 {
   "name": "utiljin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,8 +15,6 @@
   "author": "Jinyong Lee <dhzl3332@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.3.6",
-    "mocha": "^9.2.2",
     "typescript": "^4.6.3"
   }
 }
