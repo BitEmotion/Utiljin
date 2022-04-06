@@ -41,7 +41,7 @@ declare const isFindString: (str: string, findedStr: string) => boolean;
  * @param {string | number} param_price    107,000,000
  * @return {string}                       => 1억 700만
  */
-declare const renderPrice: (param_price: string | number) => string;
+declare const renderPriceWon: (param_price: string | number) => string;
 /** 임시 데이터를 채우기 위해 사용할 함수 */
 /** createDummyData
  * @param {number} lengthNumber
@@ -65,6 +65,13 @@ declare const getDatetime: (param_date?: string | undefined) => string;
  * @returns {string}
  */
 declare const getDateTimePrevMonth_fromBaseTime: (param_month: number, baseDate?: string | undefined) => string;
+/**
+ *
+ * @param {number} param_month
+ * @param {string} baseDate
+ * @returns {string}
+ */
+declare const getDateTimePrevMonth_fromBaseTime_type2: (param_month: number, baseDate?: string | undefined) => string;
 /** averagePair
  * @param {Array<number>} arr
  * @param {number} num
@@ -122,7 +129,7 @@ declare const repeatString: (str: string, n: number) => string;
 declare const simpleArraySum: (arr: Array<number>) => number;
 declare const transposeMatrix: (arr: Array<Array<number>>) => number[][];
 /**
- * 확장자 이름 변경
+ * change the name of the extension
  * @param {string} name
  * @param {string} extName
  * @return {string}
@@ -138,4 +145,4 @@ declare const bubbleSort: (array: Array<number>) => Array<number>;
  * @return {Array<number>}
  */
 declare const selectionSort: (array: Array<number>) => Array<number>;
-export { makeDummyNumberArray, makeDummyNumberArray_fromNumber, getRandomNumber, getCommaNumber, getFixedNumber, isFindString, renderPrice, averagePair, compareTriplets, toHex, diagonalDifference, deleteCharFromString, factorial, fibonaci, gcd, hanoi, hanoi_noRecursive, getAllSubsets, infixToPostfix, lcm, linearSearch, makePermanum, permute, repeatString, simpleArraySum, transposeMatrix, changeExtName, createDummyData, createDummyData_noRandom, bubbleSort, selectionSort, getDatetime, getDateTimePrevMonth_fromBaseTime };
+export { makeDummyNumberArray, makeDummyNumberArray_fromNumber, getRandomNumber, getCommaNumber, getFixedNumber, isFindString, renderPriceWon, averagePair, compareTriplets, toHex, diagonalDifference, deleteCharFromString, factorial, fibonaci, gcd, hanoi, hanoi_noRecursive, getAllSubsets, infixToPostfix, lcm, linearSearch, makePermanum, permute, repeatString, simpleArraySum, transposeMatrix, changeExtName, createDummyData, createDummyData_noRandom, bubbleSort, selectionSort, getDatetime, getDateTimePrevMonth_fromBaseTime, getDateTimePrevMonth_fromBaseTime_type2 };

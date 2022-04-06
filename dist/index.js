@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDateTimePrevMonth_fromBaseTime = exports.getDatetime = exports.selectionSort = exports.bubbleSort = exports.createDummyData_noRandom = exports.createDummyData = exports.changeExtName = exports.transposeMatrix = exports.simpleArraySum = exports.repeatString = exports.permute = exports.makePermanum = exports.linearSearch = exports.lcm = exports.infixToPostfix = exports.getAllSubsets = exports.hanoi_noRecursive = exports.hanoi = exports.gcd = exports.fibonaci = exports.factorial = exports.deleteCharFromString = exports.diagonalDifference = exports.toHex = exports.compareTriplets = exports.averagePair = exports.renderPrice = exports.isFindString = exports.getFixedNumber = exports.getCommaNumber = exports.getRandomNumber = exports.makeDummyNumberArray_fromNumber = exports.makeDummyNumberArray = void 0;
+exports.getDateTimePrevMonth_fromBaseTime_type2 = exports.getDateTimePrevMonth_fromBaseTime = exports.getDatetime = exports.selectionSort = exports.bubbleSort = exports.createDummyData_noRandom = exports.createDummyData = exports.changeExtName = exports.transposeMatrix = exports.simpleArraySum = exports.repeatString = exports.permute = exports.makePermanum = exports.linearSearch = exports.lcm = exports.infixToPostfix = exports.getAllSubsets = exports.hanoi_noRecursive = exports.hanoi = exports.gcd = exports.fibonaci = exports.factorial = exports.deleteCharFromString = exports.diagonalDifference = exports.toHex = exports.compareTriplets = exports.averagePair = exports.renderPriceWon = exports.isFindString = exports.getFixedNumber = exports.getCommaNumber = exports.getRandomNumber = exports.makeDummyNumberArray_fromNumber = exports.makeDummyNumberArray = void 0;
 /** 파라미터로 들어간 숫자 만큼 배열의 요소가 생김(0부터 1, 2,3... 식으로)
  * @param {number} length
  * @return {Array<number>}
@@ -70,7 +70,7 @@ exports.isFindString = isFindString;
  * @param {string | number} param_price    107,000,000
  * @return {string}                       => 1억 700만
  */
-const renderPrice = (param_price) => {
+const renderPriceWon = (param_price) => {
     const setWon = (pWon) => {
         var won = (pWon + "").replace(/,/g, "");
         var arrWon = ["원", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정"];
@@ -82,7 +82,6 @@ const renderPrice = (param_price) => {
         var arrCnt = won.split(",").length - 1;
         for (var ii = 0; ii < won.split(",").length; ii++) {
             if (arrWon[arrCnt] == undefined) {
-                // alert("값의 수가 너무 큽니다.");
                 break;
             }
             var tmpwon = 0;
@@ -91,7 +90,7 @@ const renderPrice = (param_price) => {
                 tmpwon = tmpwon + Number(num1);
             }
             if (tmpwon > 0) {
-                changeWon += won.split(",")[ii] + arrWon[arrCnt]; //55억0000만0000원 이런 형태 방지 0000 다 짤라 버린다
+                changeWon += won.split(",")[ii] + arrWon[arrCnt];
             }
             arrCnt--;
         }
@@ -99,15 +98,15 @@ const renderPrice = (param_price) => {
     };
     if (typeof param_price == "string" && param_price.indexOf("-") == 0) {
         // console.log("param_price",param_price);
-        const param_price_한글 = setWon(param_price.replace("-", "") + "0000");
-        return "( " + "-" + param_price_한글.replace("억0", "억").replace("억", "억 ") + ")";
+        const param_price_한글 = setWon(param_price.replace("-", ""));
+        return "-" + param_price_한글.replace("억0", "억").replace("억", "억 ");
     }
     else {
-        const param_price_한글 = setWon(param_price + "0000");
+        const param_price_한글 = setWon(param_price);
         return param_price_한글.replace("억0", "억").replace("억", "억 ");
     }
 };
-exports.renderPrice = renderPrice;
+exports.renderPriceWon = renderPriceWon;
 /** 임시 데이터를 채우기 위해 사용할 함수 */
 /** createDummyData
  * @param {number} lengthNumber
@@ -191,6 +190,28 @@ const getDateTimePrevMonth_fromBaseTime = (param_month, baseDate) => {
         : month + 1}`;
 };
 exports.getDateTimePrevMonth_fromBaseTime = getDateTimePrevMonth_fromBaseTime;
+/**
+ *
+ * @param {number} param_month
+ * @param {string} baseDate
+ * @returns {string}
+ */
+const getDateTimePrevMonth_fromBaseTime_type2 = (param_month, baseDate) => {
+    let date;
+    if (baseDate) {
+        date = new Date(baseDate);
+    }
+    else {
+        date = new Date();
+    }
+    let clockDate = new Date(date.getFullYear(), date.getMonth() - param_month, date.getDate());
+    let year = clockDate.getFullYear();
+    let month = clockDate.getMonth();
+    return `${year.toString()}${month + 1 < 10
+        ? `0${month + 1}`
+        : month + 1}`;
+};
+exports.getDateTimePrevMonth_fromBaseTime_type2 = getDateTimePrevMonth_fromBaseTime_type2;
 /** averagePair
  * @param {Array<number>} arr
  * @param {number} num
@@ -405,7 +426,6 @@ const hanoi_noRecursive = (n, from, by, to) => {
 exports.hanoi_noRecursive = hanoi_noRecursive;
 const getAllSubsets = (theArray) => {
     return theArray.reduce((subsets, value) => {
-        // console.log('subsets',subsets, 'value',value);
         return subsets.concat(subsets.map((set) => [value, ...set]));
     }, [[]]);
 };
@@ -605,7 +625,7 @@ const transposeMatrix = (arr) => {
 };
 exports.transposeMatrix = transposeMatrix;
 /**
- * 확장자 이름 변경
+ * change the name of the extension
  * @param {string} name
  * @param {string} extName
  * @return {string}
