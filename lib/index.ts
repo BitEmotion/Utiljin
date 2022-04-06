@@ -67,9 +67,9 @@ const makeDummyNumberArray_fromNumber = (length: number, fromNumber: number): Ar
  * @param {string | number} param_price    107,000,000
  * @return {string}                       => 1억 700만
  */
-const renderPrice = (param_price: string | number): string => {
+const renderPriceWon = (param_price: string | number): string => {
   
-    const setWon = (pWon: string): string => {
+    const setWon = (pWon: string | number): string => {
         var won  = (pWon+"").replace(/,/g, "");
         var arrWon  = ["원", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정"];
         var changeWon = "";
@@ -80,7 +80,6 @@ const renderPrice = (param_price: string | number): string => {
         var arrCnt = won.split(",").length-1;
         for ( var ii = 0; ii < won.split(",").length; ii++) {
             if ( arrWon[arrCnt] == undefined ) {
-                // alert("값의 수가 너무 큽니다.");
                 break;
             }
             var tmpwon=0;
@@ -89,19 +88,19 @@ const renderPrice = (param_price: string | number): string => {
                 tmpwon = tmpwon+Number(num1);
             }
             if ( tmpwon > 0 ){
-                changeWon += won.split(",")[ii]+arrWon[arrCnt]; //55억0000만0000원 이런 형태 방지 0000 다 짤라 버린다
+                changeWon += won.split(",")[ii]+arrWon[arrCnt]; 
             }
             arrCnt--;
         }
         return changeWon;
     }
 
-    if (typeof param_price == "string" && param_price.indexOf("-") == 0) {
+    if (typeof param_price == "string"  && param_price.indexOf("-") == 0) {
         // console.log("param_price",param_price);
-        const param_price_한글 = setWon(param_price.replace("-","") + "0000");
-        return "( " + "-" + param_price_한글.replace("억0","억").replace("억","억 ") + ")";
+        const param_price_한글 = setWon(param_price.replace("-",""));
+        return "-" + param_price_한글.replace("억0","억").replace("억","억 ");
     } else {
-        const param_price_한글 = setWon(param_price + "0000");
+        const param_price_한글 = setWon(param_price);
         return param_price_한글.replace("억0","억").replace("억","억 ");
     }
 
@@ -190,6 +189,27 @@ const getDateTimePrevMonth_fromBaseTime = (param_month: number, baseDate?: strin
             : month+1}`;
 }
 
+/**
+ * 
+ * @param {number} param_month 
+ * @param {string} baseDate 
+ * @returns {string} 
+ */
+ const getDateTimePrevMonth_fromBaseTime_type2 = (param_month: number, baseDate?: string): string => {
+    let date ;
+    if (baseDate) {
+        date = new Date(baseDate);
+    } else {
+        date = new Date();
+    }
+
+    let clockDate = new Date(date.getFullYear(), date.getMonth() - param_month, date.getDate());
+    let year = clockDate.getFullYear();
+    let month = clockDate.getMonth();
+    return `${year.toString()}${month+1 < 10
+            ? `0${month+1}`
+            : month+1}`;
+}
 /** averagePair 
  * @param {Array<number>} arr   
  * @param {number} num   
@@ -401,9 +421,8 @@ const hanoi_noRecursive = (n: number, from: number, by: number, to: number) => {
 
 const getAllSubsets = (theArray: Array<any>) => {
   return theArray.reduce((subsets, value) => {
-      // console.log('subsets',subsets, 'value',value);
       return subsets.concat(subsets.map((set: any) => [value, ...set])); 
-  }, [[]])
+  }, [[]]);
 }
 
 const infixToPostfix = (param_str: string) => {
@@ -604,7 +623,7 @@ const transposeMatrix = (arr:Array<Array<number>>) => {
 }
 
 /**
- * 확장자 이름 변경
+ * change the name of the extension
  * @param {string} name 
  * @param {string} extName 
  * @return {string}
@@ -664,7 +683,7 @@ export {
   , getFixedNumber
 
   , isFindString
-  , renderPrice
+  , renderPriceWon
 
   , averagePair
   , compareTriplets
@@ -698,4 +717,5 @@ export {
 
   , getDatetime
   , getDateTimePrevMonth_fromBaseTime
+  , getDateTimePrevMonth_fromBaseTime_type2
 }

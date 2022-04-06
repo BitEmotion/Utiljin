@@ -236,10 +236,25 @@ Utiljin.getDateTimePrevMonth_fromBaseTime(10, "2022-01");
 => '2021-03'
 ```
 
+<br>
+
+### 15. getDateTimePrevMonth_fromBaseTime_type2
+```
+/** Function to get the date of the previous month from the base date
+
+* @param  {number}  param_month
+* @param  {string}  baseDate?
+* @returns  {string}
+*/
+Utiljin.getDateTimePrevMonth_fromBaseTime(4);
+=> '2021-12' (now time : 2022-04)
+Utiljin.getDateTimePrevMonth_fromBaseTime(10, "2022-01");
+=> '2021-03'
+```
 
 <br>
 
-### 15. toHex
+### 16. toHex
 ```
 /** convert number to hexadecimal
 
@@ -256,7 +271,7 @@ Utiljin.toHex(1000);
 
 <br>
 
-### 16. deleteCharFromString
+### 17. deleteCharFromString
 ```
 /** If the character that is the second argument exists in the first argument string, it is removed.
 
@@ -271,7 +286,7 @@ Utiljin.deleteCharFromString("leejinyong","e")
 <br>
 
 
-### 17. factorial
+### 18. factorial
 ```
 /** factorial.
 
@@ -288,7 +303,7 @@ Utiljin.factorial(10);
 <br>
 
 
-### 18. fibonaci
+### 19. fibonaci
 ```
 /** fibonaci.
 
@@ -303,7 +318,7 @@ Utiljin.factorial(100);
 
 <br>
 
-### 19. gcd
+### 20. gcd
 ```
 /**  get Greatest Common Divisor
 
@@ -319,7 +334,7 @@ Utiljin.gcd(20,10);
 
 <br>
 
-### 20. lcm
+### 21. lcm
 ```
 /**  get Least Common Multiple.
 
@@ -335,6 +350,21 @@ Utiljin.lcm([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 ```
 
 <br>
+
+### 22. changeExtName
+```
+/** change the name of the extension
+ * 
+ * @param {string} file name 
+ * @param {string} extension Name 
+ * @return {string}
+*/
+Utiljin.changeExtName("file.excel","txt");
+=> "file.txt"
+```
+
+<br>
+
 
 # 4. Bug Report
 
